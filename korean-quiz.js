@@ -99,7 +99,15 @@ function hover()
 function exitAndToggle()
 {
 	this.className='game-div';
-	toggle();
+	//todo if i just call toggle() function i lose the 'this' qualifier and this becomes the gloabl object. why?
+	if(this.getElementsByTagName("p")[0].style.color == 'beige') {
+		this.getElementsByTagName("p")[0].style.color = 'black';
+		this.style.borderColor = 'black';
+	}
+	else {
+		this.getElementsByTagName("p")[0].style.color = 'beige';
+		this.style.borderColor = 'beige';
+	}
 }
 
 function toggle()
@@ -168,7 +176,7 @@ function init()
 	}
 	else
 	{
-		//placeholder css class for no-touch screens (not sure if will be used)
+		//css class for no-touch screens
 		document.documentElement.className += " notouch";
 		//add all the "onClick" events
 		for (var i = 0; i < gameTilesElements.length; i++) 
