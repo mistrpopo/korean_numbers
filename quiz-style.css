@@ -2,10 +2,20 @@ h1 {
 	text-align: center;
 }
 
-body {
-	font-size: 20px;
-	font-family: sans-serif;
-	background-color: beige;
+@media (max-width: 858px) {
+ 	body {
+		font-size: 40px;
+		font-family: sans-serif;
+		background-color: beige;
+	}
+}
+
+@media (min-width: 858px) {
+ 	body {
+		font-size: 30px;
+		font-family: sans-serif;
+		background-color: beige;
+	}
 }
 
 .noselect {
@@ -26,11 +36,17 @@ body {
 	border: 1px solid black;
 	display: inline-block;
 	width: 4em;
+	height: 3em;
 	margin: 0.2em;
 }
-.game-div p {
-}
+
 .game-div:hover {
+	border-style: dotted;
+	background-color: wheat;
+	cursor: default;
+}
+
+.hover-style {
 	border-style: dotted;
 	background-color: wheat;
 	cursor: default;
@@ -40,6 +56,7 @@ body {
 #the-game {
 	-moz-user-select: none;
 	text-align: center;
+	line-height: 1em;
 	margin-bottom: 3em;
 	padding:1em;
 }
@@ -58,6 +75,7 @@ body {
 	border: 2px solid black;
 	display: inline-block;
 	width: 8em;
+	height: 3em;
 	margin: 0.1em;
 }
 .answer-div:hover {

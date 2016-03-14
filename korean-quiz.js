@@ -91,6 +91,17 @@ function setAnswer(answerTile,tileType,i)
 	theAnswerTile.innerHTML = tilesContents[tileType][i];
 }
 
+function hover()
+{
+	this.className='game-div hover-style';
+}
+
+function exitAndToggle()
+{
+	this.className='game-div';
+	toggle();
+}
+
 function toggle()
 {
 	if(this.getElementsByTagName("p")[0].style.color == 'beige') {
@@ -130,18 +141,47 @@ function reroll()
 
 function init()
 {
-	//add all the "onClick" events here
+	//test for touch events support
+	var touchScreen = ("ontouchstart" in document.documentElement);
 	var gameTilesElements = document.getElementsByClassName("game-div");
-	for (var i = 0; i < gameTilesElements.length; i++) 
-	{
-		gameTilesElements[i].onclick = toggle;
-	}
 	var answerTilesElements = document.getElementsByClassName("answer-div");
-	for (var i = 0; i < answerTilesElements.length; i++) 
+	if (touchScreen) 
 	{
-		answerTilesElements[i].onmousedown = validate;
-		answerTilesElements[i].onmouseup = reroll;
+		//add all the "touch" events
+		for (var i = 0; i < gameTilesElements.length; i++) 
+		{
+
+			gameTilesElements[i].ontouchstart = hover;
+			gameTilesElements[i].ontouchenter = hover;
+			gameTilesElements[i].ontouchend = exitAndToggle;
+			gameTilesElements[i].ontouchleave = exitAndToggle;
+			gameTilesElements[i].ontouchcancel = exitAndToggle;
+		}
+		for (var i = 0; i < answerTilesElements.length; i++) 
+		{
+			answerTilesElements[i].ontouchstart = validate;
+			answerTilesElements[i].ontouchenter = validate;
+			answerTilesElements[i].ontouchend = reroll;
+			answerTilesElements[i].ontouchleave = reroll;
+			answerTilesElements[i].ontouchcancel = reroll;
+		}
 	}
+	else
+	{
+		//placeholder css class for no-touch screens (not sure if will be used)
+		document.documentElement.className += " notouch";
+		//add all the "onClick" events
+		for (var i = 0; i < gameTilesElements.length; i++) 
+		{
+			gameTilesElements[i].onclick = toggle;
+		}
+		for (var i = 0; i < answerTilesElements.length; i++) 
+		{
+			answerTilesElements[i].onmousedown = validate;
+			answerTilesElements[i].onmouseup = reroll;
+		}
+	}
+
 	//first roll
 	roll();
 }
