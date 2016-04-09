@@ -9,10 +9,10 @@ h1 {
 
 @media (max-width: 858px) {
  	body {
-		font-size: 60px;
+		font-size: 30px;
 	}
 	.control-div {
-		font-size: 40px;
+		font-size: 20px;
 	}
 }
 
