@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 		<title>Remember korean numbers</title>
 		<script type ="text/javascript" src="korean-quiz.js"></script>
 		<link rel="stylesheet" type="text/css" href="quiz-style.css"></link>
@@ -10,8 +11,16 @@
 		<h1>Remember korean numbers</h1>
 		<div id="the-rules">
 			<p>Korean numbers quiz! Find the correct answer. </p>
-			<p>Click on the tiles to toggle their visibility and customise your training.</p>
-			<p id="the-score">Score: 0</p>
+			<p>Click on the game tiles to toggle their visibility and customise your training.</p>
+			<p class="control-descriptor">Answer tiles style:</p>
+			<div class="control-div" id="answer-control">
+				<p id="current-answer-control"></p>
+			</div>
+			<!--<p class="control-descriptor">Level:</p>
+			<div class="control-div" id="level-control">
+				<p id="current-level-control"></p>
+			</div>-->
+			<p id="the-score"></p>
 		</div>
 		<div id="the-game">
 			<div class="nobreak">

@@ -1,20 +1,27 @@
+body {
+	font-family: sans-serif;
+	background-color: beige;
+}
+
 h1 {
 	text-align: center;
 }
 
 @media (max-width: 858px) {
  	body {
+		font-size: 60px;
+	}
+	.control-div {
 		font-size: 40px;
-		font-family: sans-serif;
-		background-color: beige;
 	}
 }
 
 @media (min-width: 858px) {
  	body {
 		font-size: 30px;
-		font-family: sans-serif;
-		background-color: beige;
+	}
+	.control-div {
+		font-size: 20px;
 	}
 }
 
@@ -31,6 +38,7 @@ h1 {
 	white-space: nowrap;
 	display: inline-block;
 }
+
 /*style of the game tiles*/
 .game-div {
 	border: 1px solid black;
@@ -40,12 +48,18 @@ h1 {
 	margin: 0.2em;
 }
 
-.notouch .game-div:hover {
-	border-style: dotted;
-	background-color: wheat;
-	cursor: default;
+.control-div {
+	border: 2px solid black;
+	display: inline-block;
+	text-align: center;
+	width: 12em;
+	height: 3em;
+	margin: 0.2em;
 }
 
+.notouch .game-div:hover , 
+.notouch .control-div:hover , 
+.notouch .answer-div:hover , 
 .hover-style {
 	border-style: dotted;
 	background-color: wheat;
@@ -78,11 +92,6 @@ h1 {
 	height: 3em;
 	margin: 0.1em;
 }
-.notouch .answer-div:hover {
-	border-style: dotted;
-	background-color: wheat;
-	cursor: default;
-}
 
 /*center the answer tiles*/
 #the-answers {
@@ -99,3 +108,8 @@ h1 {
 }
 
 
+/*control descriptors*/
+.control-descriptor {
+
+	display: inline;
+}
