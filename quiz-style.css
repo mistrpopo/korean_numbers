@@ -11,7 +11,7 @@ h1 {
  	body {
 		font-size: 18px;
 	}
-	.control-div {
+	.reduced-font-size {
 		font-size: 12px;
 	}
 }
@@ -20,7 +20,7 @@ h1 {
  	body {
 		font-size: 30px;
 	}
-	.control-div {
+	.reduced-font-size {
 		font-size: 20px;
 	}
 }
@@ -46,6 +46,10 @@ h1 {
 	width: 4em;
 	height: 3em;
 	margin: 0.2em;
+}
+
+.enlarged {
+	width: 8em;
 }
 
 .control-div {
