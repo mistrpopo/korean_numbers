@@ -110,10 +110,3 @@ h1 {
 #the-answers .answer-div:last-of-type {
 	margin-left: auto;
 }
-
-
-/*control descriptors*/
-.control-descriptor {
-
-	display: inline;
-}

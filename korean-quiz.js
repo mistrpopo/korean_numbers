@@ -23,7 +23,7 @@ var koreanDecimalsRomaja =
 ["","yol","seumul","soreun","maheun","swin","yesun","ilheun","yeodeun","aheun","on"];
 
 var koreanHours = 
-["","한","둘","셋","넷","다섯","여섯","일곱","여덟","아홉","열","열한","열두"];
+["","한","두","셋","넷","다섯","여섯","일곱","여덟","아홉","열","열한","열두"];
 
 var tilesContents =
 [numeral,sinoKorean,korean,sinoKoreanRomaja,koreanRomaja,chinese,koreanHours];
@@ -62,7 +62,11 @@ var playMode = 0;
 var useRomaja = true;
 
 var originalGameBoard = "";
+var reducedGameBoard = "<div class=\"game-div\" id=\"numeral-div\"><p id=\"the-numeral\"></p></div><div class=\"game-div\" id=\"sinoKorean-div\"><p id=\"the-sinoKorean\"></p></div><div class=\"game-div\" id=\"korean-div\"><p id=\"the-korean\"></p></div>";
 var sayTheTimeGameBoard = "<div class=\"game-div enlarged\" id=\"numeral-div\"><p id=\"the-numeral\"></p></div><div class=\"game-div enlarged\" id=\"korean-div\"><p id=\"the-korean\"></p></div>";
+
+var gameBoards = 
+[originalGameBoard, reducedGameBoard, reducedGameBoard, sayTheTimeGameBoard];
 
 var score = 0;
 
@@ -223,7 +227,7 @@ function validate()
 {
 	if(this.getElementsByTagName("p")[0].innerHTML == getContent(answerType,rollDice)) {
 		score=score+1;
-		this.style.backgroundColor='green';
+		this.style.backgroundColor='LimeGreen';
 	}
 	else {
 		// oh noes :(
@@ -291,13 +295,13 @@ function updateAnswerTilesStyle()
 
 function updatePlayMode()
 {
+	if(document.getElementById("the-game").innerHTML != gameBoards[playMode])
+	{
+		document.getElementById("the-game").innerHTML = gameBoards[playMode];
+		init();
+	}
 	if(playMode == pm.beginner)
 	{
-		if(document.getElementById("the-game").innerHTML != originalGameBoard)
-		{
-			document.getElementById("the-game").innerHTML = originalGameBoard;
-			init();
-		}
 		minDice = 1;
 		maxDice = 10;
 	}
@@ -314,12 +318,6 @@ function updatePlayMode()
 	else if(playMode == pm.sayTheTime)
 	{
 		//bonus mode (say the time)
-		//change the game board to include only 2 tiles
-		if(document.getElementById("the-game").innerHTML != sayTheTimeGameBoard)
-		{
-			document.getElementById("the-game").innerHTML = sayTheTimeGameBoard;
-			init();
-		}
 	}
 	//enable the romaja tiles
 	useRomaja = (playMode == pm.beginner);
@@ -335,6 +333,8 @@ function updatePlayMode()
 function init()
 {
 	if (originalGameBoard == "")  { originalGameBoard = document.getElementById("the-game").innerHTML; }
+	if (gameBoards[0] == "")  { gameBoards[0] = originalGameBoard; }
+
 	//test for touch events support
 	var touchScreen = ("ontouchstart" in document.documentElement);
 	var gameTilesElements = document.getElementsByClassName("game-div");
