@@ -59,8 +59,6 @@ var numberOfMinutes = 60;
 var answerType = 0;
 var playMode = 0;
 
-var useRomaja = true;
-
 var originalGameBoard = "";
 var reducedGameBoard = "<div class=\"game-div\" id=\"numeral-div\"><p id=\"the-numeral\"></p></div><div class=\"game-div\" id=\"sinoKorean-div\"><p id=\"the-sinoKorean\"></p></div><div class=\"game-div\" id=\"korean-div\"><p id=\"the-korean\"></p></div>";
 var sayTheTimeGameBoard = "<div class=\"game-div enlarged\" id=\"numeral-div\"><p id=\"the-numeral\"></p></div><div class=\"game-div enlarged\" id=\"korean-div\"><p id=\"the-korean\"></p></div>";
@@ -132,11 +130,6 @@ function setContent(theTile,i)
 function getContent(contentType,value)
 {
 	var retString = "";
-	if(!useRomaja && (contentType == ct.sinoKoreanRomaja || contentType == ct.koreanRomaja))
-	{
-		//just return nothing if romaja disabled
-		return "&nbsp;";
-	}
 	if(playMode == pm.sayTheTime && value >= 100)
 	{
 		if (contentType == ct.sinoKorean || contentType == ct.chinese) { return "&nbsp;"; }
@@ -279,9 +272,8 @@ function doControl(object)
 		if(playMode >= numberOfPlayModes) { playMode = 0; }
 		updatePlayMode();
 	}
-	if(!useRomaja && answerType == 3 || answerType == 4) { answerType = 5; }
 	if(playMode == pm.sayTheTime && answerType == 1) { answerType = 2; }
-	if(playMode == pm.sayTheTime && answerType > 2) { answerType = 0; }
+	if(playMode != pm.beginner && answerType > 2) { answerType = 0; }
 	updateScore();
 	updateAnswerTilesStyle();
 	//reroll
